@@ -1,0 +1,165 @@
+:root {
+  --ink: #2a241a;
+  --ink-muted: #6b5b3d;
+  --accent: #d18a2d;
+  --accent-strong: #b96d15;
+  --accent-2: #2c6b5f;
+  --card: #fffaf0;
+  --bg-1: #fff3d7;
+  --bg-2: #fbe8c0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  background: radial-gradient(circle at top right, #f9e2b3, transparent 60%),
+    linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  color: var(--ink);
+}
+
+.popup {
+  width: 280px;
+  margin: 12px;
+  padding: 16px 16px 14px;
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 26px rgba(28, 20, 6, 0.15);
+  animation: pop-in 0.2s ease-out;
+}
+
+@keyframes pop-in {
+  from {
+    transform: translateY(6px);
+    opacity: 0.9;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+section {
+  margin-bottom: 12px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.toggle input {
+  accent-color: var(--accent);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.range-field {
+  gap: 6px;
+}
+
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.range-value {
+  font-size: 11px;
+  color: var(--accent-2);
+  background: rgba(44, 107, 95, 0.12);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+input[type="text"] {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff8e9;
+  color: var(--ink);
+}
+
+select {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff8e9;
+  color: var(--ink);
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+input[type="text"]:focus {
+  outline: 2px solid rgba(209, 138, 45, 0.35);
+  border-color: rgba(209, 138, 45, 0.6);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  flex: 1;
+  padding: 9px 8px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  cursor: pointer;
+  font-weight: 700;
+  color: #fff8ef;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 6px 14px rgba(185, 109, 21, 0.25);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(185, 109, 21, 0.32);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.status {
+  font-size: 11px;
+  color: var(--accent-2);
+  min-height: 16px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(44, 107, 95, 0.12);
+  display: inline-block;
+}

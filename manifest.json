@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Bridger",
+  "version": "2025.28.12",
+  "description": "LLM-powered dyslexia/ADHD reading assistant with local Ollama processing.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["http://localhost:11434/*"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Bridger"
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"],
+      "css": ["src/styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

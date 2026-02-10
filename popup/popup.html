@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bridger</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header>
+        <h1>Bridger</h1>
+        <p>Local LLM reading assistant</p>
+      </header>
+
+      <section>
+        <label class="toggle">
+          <input type="checkbox" id="enabled" />
+          <span>Enable on this page</span>
+        </label>
+      </section>
+
+      <section>
+        <label class="field">
+          <span>Ollama model</span>
+          <input type="text" id="model" placeholder="gemma3:1b" />
+        </label>
+      </section>
+
+      <section>
+        <label class="toggle">
+          <input type="checkbox" id="splitLongWords" />
+          <span>Split long words with |</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="highlightLongWords" />
+          <span>Highlight long words</span>
+        </label>
+        <label class="field">
+          <span>Highlight color</span>
+          <select id="highlightColor">
+            <option value="gold">Gold</option>
+            <option value="sky">Sky</option>
+            <option value="teal">Teal</option>
+            <option value="rose">Rose</option>
+            <option value="lime">Lime</option>
+            <option value="slate">Slate</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Highlight style</span>
+          <select id="highlightStyle">
+            <option value="solid">Solid</option>
+            <option value="dotted">Dotted</option>
+            <option value="dashed">Dashed</option>
+          </select>
+        </label>
+        <label class="field range-field">
+          <span class="range-label">
+            Highlight thickness
+            <span id="highlightThicknessValue" class="range-value">1.0px</span>
+          </span>
+          <input type="range" id="highlightThickness" min="0.5" max="4" step="0.25" />
+        </label>
+        <label class="field range-field">
+          <span class="range-label">
+            Line spacing
+            <span id="lineSpacingValue" class="range-value">1.7</span>
+          </span>
+          <input type="range" id="lineSpacing" min="1.4" max="2.2" step="0.05" />
+        </label>
+        <label class="field range-field">
+          <span class="range-label">
+            Letter spacing
+            <span id="letterSpacingValue" class="range-value">0.00em</span>
+          </span>
+          <input type="range" id="letterSpacing" min="0" max="0.08" step="0.005" />
+        </label>
+      </section>
+
+      <section class="actions">
+        <button id="toggleView">Toggle view</button>
+        <button id="save">Save</button>
+      </section>
+
+      <p id="status" class="status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
