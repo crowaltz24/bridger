@@ -135,16 +135,18 @@
 
 .bridger-toast {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
-  padding: 10px 14px;
+  left: 50%;
+  top: 80%;
+  padding: 14px 18px;
   background: #2f2a1f;
   color: #fef7e6;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 18px;
+  min-width: 220px;
+  text-align: center;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  transform: translateY(8px);
+  transform: translate(-50%, -8px);
   transition: opacity 0.2s ease, transform 0.2s ease;
   z-index: 2147483647;
   pointer-events: none;
@@ -152,7 +154,7 @@
 
 .bridger-toast.bridger-toast-show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
 }
 
 .bridger-toast.bridger-toast-error {
