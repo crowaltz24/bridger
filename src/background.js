@@ -14,6 +14,8 @@ function buildPrompt(text) {
     "Remove generic filler or self-evident statements.",
     "Only include points explicitly present in the source text.",
     "Do not dumb content down, assume your reader can process complex ideas.",
+    "Do NOT simplify if the text is already easy to read (e.g. below 7th grade level).",
+    "Do not affect technical accuracy or remove important details, but rephrase complex sentences for clarity.",
     "Do not repeat information already stated.",
     "Do not infer missing context.",
     "If you cannot simplify without adding information, return the original text unchanged.",
