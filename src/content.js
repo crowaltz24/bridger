@@ -451,7 +451,7 @@ async function transformSelection() {
     transformedSpan.appendChild(document.createTextNode(selectedText));
     wrapper.classList.add("bridger-error");
     const message = String(error?.message || "");
-    const isCors = message.includes("403") || message.toLowerCase().includes("cors");
+    const isCors = message.includes("403") || message.toLowerCase().includes("cors") || message.toLowerCase().includes("cross-origin");
     if (isCors) {
       showToast("Ollama blocked by CORS", true);
     }
