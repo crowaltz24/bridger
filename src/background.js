@@ -1,5 +1,9 @@
 const OLLAMA_URL = "http://localhost:11434/api/generate";
 const DEFAULT_MODEL = "gemma3:1b";
+const MENU_SETTINGS_ID = "bridger-menu";
+const MENU_TOGGLE_VIEW_ID = "bridger-toggle-view";
+const MENU_AUTO_SIMPLIFY_ID = "bridger-auto-simplify";
+const MENU_SIMPLIFY_ID = "bridger-simplify";
 
 function buildPrompt(text) {
   return [
@@ -101,4 +105,81 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   })();
 
   return true;
+});
+
+async function updateContextMenuState() {
+  const stored = await chrome.storage.local.get({ autoSimplify: true });
+  const autoSimplify = Boolean(stored.autoSimplify);
+
+  chrome.contextMenus.update(MENU_AUTO_SIMPLIFY_ID, { checked: autoSimplify });
+  chrome.contextMenus.update(MENU_SIMPLIFY_ID, { visible: !autoSimplify });
+}
+
+function createContextMenus() {
+  chrome.contextMenus.removeAll(() => {
+
+    chrome.contextMenus.create({
+      id: MENU_SIMPLIFY_ID,
+      title: "Simplify",
+      contexts: ["selection"]
+    });
+
+    chrome.contextMenus.create({
+      id: MENU_SETTINGS_ID,
+      title: "Bridger Settings",
+      contexts: ["selection", "page"]
+    });
+
+    chrome.contextMenus.create({
+      id: MENU_TOGGLE_VIEW_ID,
+      parentId: MENU_SETTINGS_ID,
+      title: "Toggle view",
+      contexts: ["selection", "page"]
+    });
+
+    chrome.contextMenus.create({
+      id: MENU_AUTO_SIMPLIFY_ID,
+      parentId: MENU_SETTINGS_ID,
+      title: "Auto-simplify selection",
+      type: "checkbox",
+      contexts: ["selection", "page"]
+    });
+
+    
+
+    updateContextMenuState();
+  });
+}
+
+chrome.runtime.onInstalled.addListener(() => {
+  createContextMenus();
+});
+
+chrome.runtime.onStartup.addListener(() => {
+  createContextMenus();
+});
+
+chrome.storage.onChanged.addListener((changes) => {
+  if (changes.autoSimplify) {
+    updateContextMenuState();
+  }
+});
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  if (!tab?.id) return;
+
+  if (info.menuItemId === MENU_TOGGLE_VIEW_ID) {
+    chrome.tabs.sendMessage(tab.id, { type: "toggle_view" });
+    return;
+  }
+
+  if (info.menuItemId === MENU_SIMPLIFY_ID) {
+    chrome.tabs.sendMessage(tab.id, { type: "simplify_selection" });
+    return;
+  }
+
+  if (info.menuItemId === MENU_AUTO_SIMPLIFY_ID) {
+    const checked = Boolean(info.checked);
+    await chrome.storage.local.set({ autoSimplify: checked });
+  }
 });

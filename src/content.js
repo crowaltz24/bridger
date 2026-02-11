@@ -479,6 +479,9 @@ chrome.runtime.onMessage.addListener((message) => {
     bridgerState.view = bridgerState.view === "transformed" ? "original" : "transformed";
     applyViewState();
   }
+  if (message?.type === "simplify_selection") {
+    transformSelection();
+  }
 });
 
 document.addEventListener("mouseup", () => {
