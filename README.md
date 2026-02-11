@@ -12,7 +12,7 @@ Local LLM-powered reading assistant for dyslexia/ADHD users. Project for EPICS.
 
 ## Quick Start
 
-1. Run Ollama locally and ensure the model exists (default: gemma3:1b)
+1. Run Ollama locally and ensure the model exists (default: gemma3:1b due to speed, but you can switch to any you have)
 2. Load the extension in browser
 3. Select text on a page to transform it
 4. Configure to liking with popup
