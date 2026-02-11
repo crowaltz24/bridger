@@ -1,5 +1,6 @@
 const bridgerState = {
   enabled: true,
+  autoSimplify: true,
   view: "transformed",
   toastTimer: null,
   highlightLongWords: false,
@@ -26,6 +27,7 @@ function loadState() {
   chrome.storage.local.get(
     {
       enabled: true,
+      autoSimplify: true,
       highlightLongWords: false,
       splitLongWords: false,
       highlightColor: "gold",
@@ -36,6 +38,7 @@ function loadState() {
     },
     (data) => {
     bridgerState.enabled = Boolean(data.enabled);
+    bridgerState.autoSimplify = Boolean(data.autoSimplify);
     bridgerState.highlightLongWords = Boolean(data.highlightLongWords);
     bridgerState.splitLongWords = Boolean(data.splitLongWords);
     bridgerState.highlightColor = data.highlightColor || "gold";
@@ -53,6 +56,9 @@ loadState();
 chrome.storage.onChanged.addListener((changes) => {
   if (changes.enabled) {
     bridgerState.enabled = Boolean(changes.enabled.newValue);
+  }
+  if (changes.autoSimplify) {
+    bridgerState.autoSimplify = Boolean(changes.autoSimplify.newValue);
   }
   if (changes.highlightLongWords) {
     bridgerState.highlightLongWords = Boolean(changes.highlightLongWords.newValue);
@@ -476,5 +482,6 @@ chrome.runtime.onMessage.addListener((message) => {
 });
 
 document.addEventListener("mouseup", () => {
+  if (!bridgerState.autoSimplify) return;
   setTimeout(transformSelection, 0);
 });

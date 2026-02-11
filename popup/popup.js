@@ -10,6 +10,7 @@ async function getActiveTab() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const enabled = document.getElementById("enabled");
+  const autoSimplify = document.getElementById("autoSimplify");
   const model = document.getElementById("model");
   const highlightLongWords = document.getElementById("highlightLongWords");
   const highlightColor = document.getElementById("highlightColor");
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const stored = await chrome.storage.local.get({
     enabled: true,
+    autoSimplify: true,
     model: "gemma3:1b",
     highlightLongWords: false,
     splitLongWords: false,
@@ -36,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     letterSpacing: 0
   });
   enabled.checked = Boolean(stored.enabled);
+  autoSimplify.checked = Boolean(stored.autoSimplify);
   model.value = stored.model || "gemma3:1b";
   highlightLongWords.checked = Boolean(stored.highlightLongWords);
   splitLongWords.checked = Boolean(stored.splitLongWords);
@@ -50,6 +53,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   enabled.addEventListener("change", async () => {
     await chrome.storage.local.set({ enabled: enabled.checked });
+    setStatus("Updated");
+  });
+
+  autoSimplify.addEventListener("change", async () => {
+    await chrome.storage.local.set({ autoSimplify: autoSimplify.checked });
     setStatus("Updated");
   });
 
