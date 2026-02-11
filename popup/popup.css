@@ -137,17 +137,19 @@ button {
   padding: 9px 8px;
   border: none;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  /* background: linear-gradient(135deg, var(--accent), var(--accent-strong)); */
+  background: var(--accent-strong);
   cursor: pointer;
   font-weight: 700;
   color: #fff8ef;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 6px 14px rgba(185, 109, 21, 0.25);
+  /* box-shadow: 0 6px 14px rgba(185, 109, 21, 0.25); */
 }
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(185, 109, 21, 0.32);
+  background: var(--accent);
+  /* box-shadow: 0 8px 18px rgba(185, 109, 21, 0.32); */
 }
 
 button:active {
