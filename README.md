@@ -1,6 +1,6 @@
 # Bridger
 
-Local LLM-powered reading assistant for dyslexia/ADHD users. Project for EPICS. 
+Local LLM-powered reading assistant browser extension for dyslexia/ADHD users. Project for EPICS.
 
 ## MVP
 
