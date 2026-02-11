@@ -3,7 +3,7 @@
   "name": "Bridger",
   "version": "2025.28.12",
   "description": "LLM-powered dyslexia/ADHD reading assistant with local Ollama processing.",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "contextMenus"],
   "host_permissions": ["http://localhost:11434/*"],
   "action": {
     "default_popup": "popup/popup.html",
